@@ -1,0 +1,603 @@
+{
+  "metadata": {
+    "description": "Authoritative data sources for breast cancer clinical, genomic, imaging, drug, and literature data.",
+    "last_reviewed": "2026-05-11",
+    "primary_cancer": "breast",
+    "note": "All sources are peer-reviewed, government, or clinically validated. No patient-level data is included without appropriate DUA."
+  },
+
+  "clinical_guidelines": [
+    {
+      "id": "nccn_breast",
+      "name": "NCCN Clinical Practice Guidelines — Breast Cancer",
+      "organization": "National Comprehensive Cancer Network",
+      "url": "https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1419",
+      "api": null,
+      "access": "free_registration",
+      "format": ["PDF"],
+      "provides": ["staging criteria", "treatment algorithms by subtype", "systemic therapy recommendations", "surgical options", "surveillance schedules"],
+      "subtypes_covered": ["ER+HER2-", "HER2+", "TNBC", "BRCA-mutated", "inflammatory", "metastatic"],
+      "update_frequency": "annual",
+      "authority": "highest",
+      "notes": "Gold standard for US oncology practice. Updated annually. Requires free registration."
+    },
+    {
+      "id": "asco_guidelines",
+      "name": "ASCO Clinical Practice Guidelines — Breast Cancer",
+      "organization": "American Society of Clinical Oncology",
+      "url": "https://www.asco.org/practice-patients/guidelines/breast-cancer",
+      "api": null,
+      "access": "free",
+      "format": ["HTML", "PDF"],
+      "provides": ["HER2 testing", "ER/PR testing", "adjuvant chemotherapy", "neoadjuvant therapy", "metastatic management"],
+      "authority": "highest",
+      "notes": "Evidence-based recommendations with systematic literature review."
+    },
+    {
+      "id": "esmo_breast",
+      "name": "ESMO Clinical Practice Guidelines — Early and Advanced Breast Cancer",
+      "organization": "European Society for Medical Oncology",
+      "url": "https://www.esmo.org/guidelines/guidelines-by-topic/breast-cancer",
+      "api": null,
+      "access": "free",
+      "format": ["PDF", "HTML"],
+      "provides": ["staging", "pathology standards", "systemic therapy", "European practice patterns"],
+      "authority": "highest",
+      "notes": "European counterpart to NCCN. Useful for international comparison."
+    },
+    {
+      "id": "who_breast",
+      "name": "WHO Classification of Tumours — Breast Tumours",
+      "organization": "World Health Organization",
+      "url": "https://tumourclassification.iarc.who.int/chapters/33",
+      "api": null,
+      "access": "paid_book",
+      "format": ["book"],
+      "provides": ["histological classification", "ICD-O-3 codes", "diagnostic criteria", "WHO grade"],
+      "authority": "highest",
+      "notes": "Definitive pathological classification. 5th edition 2019."
+    }
+  ],
+
+  "survival_epidemiology": [
+    {
+      "id": "seer_database",
+      "name": "SEER (Surveillance, Epidemiology, and End Results)",
+      "organization": "National Cancer Institute",
+      "url": "https://seer.cancer.gov/",
+      "api": "https://api.seer.cancer.gov/",
+      "access": "free_registration",
+      "format": ["CSV", "SEER*Stat", "API"],
+      "provides": ["incidence rates", "survival by stage", "survival by subtype", "demographic breakdowns", "5-yr and 10-yr survival", "US population-level statistics"],
+      "key_datasets": [
+        {
+          "name": "SEER*Explorer",
+          "url": "https://seer.cancer.gov/explorer/",
+          "description": "Interactive survival and incidence by stage, age, race, year"
+        },
+        {
+          "name": "StatFacts Breast Cancer",
+          "url": "https://seer.cancer.gov/statfacts/html/breast.html",
+          "description": "Summary statistics — survival, incidence, mortality by stage"
+        }
+      ],
+      "authority": "highest",
+      "notes": "Primary US cancer statistics source. API requires registration. SEER*Stat software for custom queries."
+    },
+    {
+      "id": "seer_survival_by_stage",
+      "name": "SEER Breast Cancer Survival by Stage (curated)",
+      "organization": "National Cancer Institute",
+      "url": "https://seer.cancer.gov/statfacts/html/breast.html",
+      "api": null,
+      "access": "free",
+      "format": ["HTML table"],
+      "provides": {
+        "5yr_survival_by_stage": {
+          "localized": 0.99,
+          "regional": 0.86,
+          "distant": 0.28,
+          "all_stages": 0.91
+        },
+        "note": "AJCC stage I-IV does not map 1:1 to SEER localized/regional/distant. Use with staging mapping table."
+      },
+      "authority": "highest"
+    },
+    {
+      "id": "eurocare",
+      "name": "EUROCARE — European Cancer Registry-Based Study",
+      "organization": "Istituto Nazionale dei Tumori, Milan",
+      "url": "https://eurocare.it/",
+      "api": null,
+      "access": "free",
+      "format": ["HTML", "publications"],
+      "provides": ["European survival trends", "country-by-country comparison", "age-standardised survival"],
+      "authority": "high"
+    },
+    {
+      "id": "predict_breast",
+      "name": "PREDICT Breast Cancer",
+      "organization": "Cambridge University / NHS",
+      "url": "https://breast.predict.nhs.uk/",
+      "api": "https://breast.predict.nhs.uk/api/",
+      "access": "free",
+      "format": ["web tool", "API"],
+      "provides": ["individualized 10-year survival estimates", "benefit of adjuvant therapies", "validated on UK and international cohorts"],
+      "inputs": ["age", "tumour size", "grade", "nodes", "ER status", "HER2 status", "Ki67", "mode of detection"],
+      "authority": "high",
+      "notes": "Clinically validated prognostic tool. API returns survival curves per treatment option. Ideal for app probabilistic timeline."
+    },
+    {
+      "id": "adjuvant_online",
+      "name": "CancerMath (formerly Adjuvant! Online)",
+      "organization": "UCSF",
+      "url": "https://cancermath.net/",
+      "api": null,
+      "access": "free",
+      "format": ["web tool"],
+      "provides": ["10-year survival estimates", "benefit by treatment modality", "ER/HER2 stratified curves"],
+      "authority": "high"
+    }
+  ],
+
+  "genomic_molecular": [
+    {
+      "id": "tcga_brca",
+      "name": "TCGA-BRCA (The Cancer Genome Atlas — Breast)",
+      "organization": "NCI / NIH",
+      "url": "https://portal.gdc.cancer.gov/projects/TCGA-BRCA",
+      "api": "https://api.gdc.cancer.gov/",
+      "access": "free_open",
+      "format": ["FASTQ", "BAM", "VCF", "TSV", "CSV"],
+      "provides": ["1,098 breast tumors", "somatic mutations", "copy number variation", "RNA-seq expression", "methylation", "clinical annotations", "PAM50 subtypes"],
+      "sample_count": 1098,
+      "data_types": ["WES", "RNA-seq", "miRNA-seq", "methylation array", "protein (RPPA)", "clinical"],
+      "subtypes": ["Luminal A", "Luminal B", "HER2-enriched", "Basal-like", "Normal-like"],
+      "authority": "highest",
+      "notes": "The reference dataset for breast cancer molecular research. Open-tier data freely downloadable. Controlled-tier requires dbGaP authorization."
+    },
+    {
+      "id": "metabric",
+      "name": "METABRIC (Molecular Taxonomy of Breast Cancer International Consortium)",
+      "organization": "Cambridge / BC Cancer Agency",
+      "url": "https://ega-archive.org/studies/EGAS00000000083",
+      "api": null,
+      "access": "controlled_dua",
+      "format": ["CEL", "TXT"],
+      "provides": ["2,000+ breast tumors", "gene expression (Illumina)", "SNP copy number", "long-term follow-up", "IntClust subtypes"],
+      "sample_count": 2509,
+      "authority": "highest",
+      "notes": "Requires EGA Data Access Agreement. Best long-term survival dataset. IntClust classification is widely cited."
+    },
+    {
+      "id": "cbioportal_brca",
+      "name": "cBioPortal — Breast Cancer Studies",
+      "organization": "Memorial Sloan Kettering / Dana-Farber",
+      "url": "https://www.cbioportal.org/study/summary?id=brca_tcga",
+      "api": "https://www.cbioportal.org/api/swagger-ui/index.html",
+      "access": "free",
+      "format": ["JSON", "TSV", "API"],
+      "provides": ["mutation frequency", "copy number", "mRNA expression", "survival by mutation", "pathway analysis", "drug sensitivity correlations"],
+      "key_studies": [
+        "TCGA Breast (BRCA) — 1,084 samples",
+        "METABRIC — 2,509 samples",
+        "MSK Breast (multiple cohorts)",
+        "TCGA PanCancer Atlas"
+      ],
+      "authority": "highest",
+      "notes": "Best API for genomic queries. No registration needed. Supports filtering by gene, alteration, and survival correlation."
+    },
+    {
+      "id": "cosmic_breast",
+      "name": "COSMIC — Catalogue of Somatic Mutations in Cancer",
+      "organization": "Wellcome Sanger Institute",
+      "url": "https://cancer.sanger.ac.uk/cosmic",
+      "api": "https://cancer.sanger.ac.uk/api/",
+      "access": "free_registration",
+      "format": ["TSV", "VCF", "API"],
+      "provides": ["somatic mutation catalog", "mutation frequency by cancer type", "known driver genes", "PIK3CA, TP53, BRCA mutations"],
+      "authority": "highest",
+      "notes": "Definitive somatic mutation reference. Free registration for download."
+    },
+    {
+      "id": "clinvar_breast",
+      "name": "ClinVar — Germline Variants (BRCA1, BRCA2)",
+      "organization": "NCBI / NIH",
+      "url": "https://www.ncbi.nlm.nih.gov/clinvar/?term=breast+cancer",
+      "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
+      "access": "free",
+      "format": ["VCF", "XML", "JSON", "API"],
+      "provides": ["BRCA1/2 variant classifications", "VUS interpretations", "pathogenic/benign classifications", "evidence links"],
+      "authority": "highest"
+    },
+    {
+      "id": "brca_exchange",
+      "name": "BRCA Exchange",
+      "organization": "Global Alliance for Genomics and Health (GA4GH)",
+      "url": "https://brcaexchange.org/",
+      "api": "https://brcaexchange.org/backend/data/",
+      "access": "free",
+      "format": ["JSON", "TSV", "API"],
+      "provides": ["curated BRCA1/2 variant classifications", "expert panel classifications", "prevalence by population"],
+      "authority": "highest",
+      "notes": "The definitive BRCA variant classification resource. Aggregates multiple labs worldwide."
+    }
+  ],
+
+  "biomarkers": [
+    {
+      "id": "oncokb",
+      "name": "OncoKB — Precision Oncology Knowledge Base",
+      "organization": "Memorial Sloan Kettering Cancer Center",
+      "url": "https://www.oncokb.org/",
+      "api": "https://api.oncokb.org/",
+      "access": "free_registration",
+      "format": ["JSON", "API"],
+      "provides": ["biomarker-drug actionability levels", "FDA approvals by mutation", "clinical evidence levels", "BRCA1/2, PIK3CA, HER2 actionability"],
+      "key_biomarkers_breast": [
+        {"marker": "ESR1", "drugs": ["fulvestrant", "elacestrant"], "level": "1"},
+        {"marker": "PIK3CA", "drugs": ["alpelisib + fulvestrant"], "level": "1"},
+        {"marker": "ERBB2 amplification", "drugs": ["trastuzumab", "pertuzumab", "T-DM1", "T-DXd"], "level": "1"},
+        {"marker": "BRCA1/2", "drugs": ["olaparib", "talazoparib"], "level": "1"},
+        {"marker": "PD-L1 CPS>=10", "drugs": ["pembrolizumab"], "level": "1"},
+        {"marker": "TMB-High", "drugs": ["pembrolizumab"], "level": "2"},
+        {"marker": "NTRK fusion", "drugs": ["larotrectinib", "entrectinib"], "level": "1"}
+      ],
+      "authority": "highest",
+      "notes": "FDA-recognized knowledge base. API requires free registration. Best source for biomarker-drug relationships."
+    },
+    {
+      "id": "civic",
+      "name": "CIViC — Clinical Interpretation of Variants in Cancer",
+      "organization": "Washington University in St. Louis",
+      "url": "https://civicdb.org/",
+      "api": "https://civicdb.org/api/",
+      "access": "free",
+      "format": ["JSON", "TSV", "API"],
+      "provides": ["variant-disease-drug evidence", "community-curated", "evidence levels", "clinical significance"],
+      "authority": "high",
+      "notes": "Open-source, community-curated. Good complement to OncoKB."
+    },
+    {
+      "id": "human_protein_atlas_breast",
+      "name": "Human Protein Atlas — Breast Cancer Pathology",
+      "organization": "KTH Royal Institute of Technology, Sweden",
+      "url": "https://www.proteinatlas.org/pathology/breast+cancer",
+      "api": "https://www.proteinatlas.org/api/",
+      "access": "free",
+      "format": ["JSON", "TSV", "images", "API"],
+      "provides": ["protein expression by tumor type", "IHC images", "survival correlation by protein", "ER/PR/HER2/Ki67 expression data"],
+      "authority": "high"
+    },
+    {
+      "id": "pharmgkb",
+      "name": "PharmGKB — Pharmacogenomics Knowledge Base",
+      "organization": "Stanford University",
+      "url": "https://www.pharmgkb.org/",
+      "api": "https://api.pharmgkb.org/",
+      "access": "free",
+      "format": ["JSON", "TSV", "API"],
+      "provides": ["gene-drug interactions", "CYP2D6 tamoxifen metabolism", "pharmacogenomic guidelines"],
+      "key_for_breast": "CYP2D6 status affects tamoxifen efficacy significantly",
+      "authority": "high"
+    }
+  ],
+
+  "imaging": [
+    {
+      "id": "cbis_ddsm",
+      "name": "CBIS-DDSM (Curated Breast Imaging Subset of DDSM)",
+      "organization": "TCIA / University of South Florida",
+      "url": "https://www.cancerimagingarchive.net/collection/cbis-ddsm/",
+      "api": "https://services.cancerimagingarchive.net/nbia-api/services/",
+      "access": "free",
+      "format": ["DICOM"],
+      "provides": ["2,620 mammography cases", "mass and calcification ROIs", "pathology labels (benign/malignant)", "CC and MLO views"],
+      "sample_count": 2620,
+      "modality": "mammography",
+      "authority": "high",
+      "notes": "Most widely used mammography benchmark dataset. No registration required."
+    },
+    {
+      "id": "duke_breast_mri",
+      "name": "Duke Breast MRI Dataset",
+      "organization": "Duke University / TCIA",
+      "url": "https://www.cancerimagingarchive.net/collection/duke-breast-cancer-mri/",
+      "api": "https://services.cancerimagingarchive.net/nbia-api/services/",
+      "access": "free",
+      "format": ["DICOM"],
+      "provides": ["922 biopsy-confirmed breast cancer MRIs", "DCE-MRI", "clinical data", "tumor characteristics"],
+      "sample_count": 922,
+      "modality": "MRI",
+      "authority": "high"
+    },
+    {
+      "id": "ispy1",
+      "name": "ISPY 1 (Investigation of Serial Studies to Predict Your Therapeutic Response)",
+      "organization": "TCIA / ACRIN",
+      "url": "https://www.cancerimagingarchive.net/collection/ispy1/",
+      "api": "https://services.cancerimagingarchive.net/nbia-api/services/",
+      "access": "free",
+      "format": ["DICOM"],
+      "provides": ["222 patients", "DCE-MRI pre/during/post neoadjuvant chemo", "pathological complete response outcomes"],
+      "modality": "MRI",
+      "authority": "high",
+      "notes": "Crucial for treatment response modeling."
+    },
+    {
+      "id": "vindr_mammo",
+      "name": "VinDr-Mammo",
+      "organization": "VinAI Research / Hanoi Medical University",
+      "url": "https://vindr.ai/datasets/mammo",
+      "api": null,
+      "access": "free_registration",
+      "format": ["DICOM"],
+      "provides": ["5,000 mammography exams", "BI-RADS annotations", "lesion bounding boxes"],
+      "sample_count": 5000,
+      "modality": "mammography",
+      "authority": "high"
+    },
+    {
+      "id": "tcia_breast_collections",
+      "name": "TCIA Breast Cancer Collections (all)",
+      "organization": "The Cancer Imaging Archive / NCI",
+      "url": "https://www.cancerimagingarchive.net/disease/breast-cancer/",
+      "api": "https://services.cancerimagingarchive.net/nbia-api/services/v1/getCollectionValues",
+      "access": "free",
+      "format": ["DICOM"],
+      "provides": ["index of all breast cancer imaging collections", "mammography", "MRI", "CT", "PET"],
+      "authority": "highest",
+      "notes": "Master index. Use API to enumerate available collections."
+    }
+  ],
+
+  "drugs_treatments": [
+    {
+      "id": "chembl_breast",
+      "name": "ChEMBL — Bioactive Molecules (breast cancer)",
+      "organization": "EMBL-EBI",
+      "url": "https://www.ebi.ac.uk/chembl/",
+      "api": "https://www.ebi.ac.uk/chembl/api/data/",
+      "access": "free",
+      "format": ["JSON", "XML", "TSV", "API"],
+      "provides": ["drug structures", "mechanism of action", "target binding data", "clinical trial phase", "SMILES/InChI", "approved drug list"],
+      "query_example": "https://www.ebi.ac.uk/chembl/api/data/drug_indication.json?mesh_heading=Breast+Neoplasms&format=json",
+      "authority": "highest"
+    },
+    {
+      "id": "fda_approvals",
+      "name": "FDA Hematology/Oncology Drug Approvals",
+      "organization": "U.S. Food and Drug Administration",
+      "url": "https://www.fda.gov/patients/hematologyoncology-cancer-approvals-safety-notifications",
+      "api": "https://api.fda.gov/drug/label.json?search=indications_and_usage:breast+cancer",
+      "access": "free",
+      "format": ["JSON", "API"],
+      "provides": ["FDA-approved drugs for breast cancer", "approval dates", "indication labels", "accelerated approvals", "withdrawal notices"],
+      "authority": "highest",
+      "notes": "OpenFDA API. No registration required."
+    },
+    {
+      "id": "dailymed",
+      "name": "DailyMed — FDA Drug Labels",
+      "organization": "NIH National Library of Medicine",
+      "url": "https://dailymed.nlm.nih.gov/",
+      "api": "https://dailymed.nlm.nih.gov/dailymed/services/",
+      "access": "free",
+      "format": ["XML", "JSON", "API"],
+      "provides": ["full prescribing information", "dosing", "contraindications", "side effects", "drug interactions", "mechanism of action"],
+      "authority": "highest",
+      "notes": "Authoritative source for drug label text used in the app."
+    },
+    {
+      "id": "drugbank",
+      "name": "DrugBank Online",
+      "organization": "University of Alberta",
+      "url": "https://go.drugbank.com/",
+      "api": "https://go.drugbank.com/releases/latest",
+      "access": "free_registration",
+      "format": ["XML", "CSV", "JSON", "API"],
+      "provides": ["drug structure", "pharmacokinetics", "drug-drug interactions", "targets", "pathways", "clinical trials"],
+      "authority": "highest",
+      "notes": "Full database download requires academic registration. API available for querying individual drugs."
+    },
+    {
+      "id": "clinicaltrials_breast",
+      "name": "ClinicalTrials.gov — Breast Cancer Trials",
+      "organization": "NIH National Library of Medicine",
+      "url": "https://clinicaltrials.gov/search?cond=breast+cancer&status=RECRUITING",
+      "api": "https://clinicaltrials.gov/api/v2/studies?query.cond=breast+cancer&format=json",
+      "access": "free",
+      "format": ["JSON", "API"],
+      "provides": ["active trials", "eligibility criteria", "interventions", "outcomes", "phase", "sponsor"],
+      "authority": "highest",
+      "notes": "v2 API. No registration. Essential for showing patients active trial options."
+    }
+  ],
+
+  "literature": [
+    {
+      "id": "pubmed",
+      "name": "PubMed / MEDLINE",
+      "organization": "National Library of Medicine / NIH",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=breast+cancer&retmode=json",
+      "access": "free",
+      "format": ["XML", "JSON", "API (Entrez)"],
+      "provides": ["40M+ citations", "abstracts", "MeSH terms", "full text links", "clinical trial registrations"],
+      "key_search": "breast+neoplasms[MeSH]+AND+review[pt]",
+      "authority": "highest"
+    },
+    {
+      "id": "semantic_scholar",
+      "name": "Semantic Scholar (AI-powered)",
+      "organization": "Allen Institute for AI",
+      "url": "https://www.semanticscholar.org/",
+      "api": "https://api.semanticscholar.org/graph/v1/",
+      "access": "free",
+      "format": ["JSON", "API"],
+      "provides": ["citation graphs", "influential papers", "TLDR summaries", "author networks"],
+      "authority": "high",
+      "notes": "Good for finding high-impact papers automatically."
+    },
+    {
+      "id": "biorxiv_medrxiv",
+      "name": "bioRxiv / medRxiv Preprints",
+      "organization": "Cold Spring Harbor Laboratory",
+      "url_biorxiv": "https://www.biorxiv.org/",
+      "url_medrxiv": "https://www.medrxiv.org/",
+      "api": "https://api.biorxiv.org/details/biorxiv/",
+      "access": "free",
+      "format": ["JSON", "PDF", "API"],
+      "provides": ["preprint studies", "latest research before peer review"],
+      "authority": "medium",
+      "notes": "Not peer-reviewed. Tag results accordingly in the app."
+    }
+  ],
+
+  "ontologies_terminologies": [
+    {
+      "id": "nci_thesaurus_breast",
+      "name": "NCI Thesaurus — Breast Cancer Terms",
+      "organization": "National Cancer Institute",
+      "url": "https://ncithesaurus.nci.nih.gov/ncitbrowser/",
+      "api": "https://evsrestapi.nci.nih.gov/evsrestapi/api/v1/concept/ncit?term=breast+cancer",
+      "access": "free",
+      "format": ["JSON", "OWL", "API"],
+      "provides": ["standardized cancer terminology", "synonyms", "definitions", "hierarchies", "NCIT codes"],
+      "authority": "highest"
+    },
+    {
+      "id": "snomed_ct",
+      "name": "SNOMED CT (via BioPortal)",
+      "organization": "SNOMED International",
+      "url": "https://bioportal.bioontology.org/ontologies/SNOMEDCT",
+      "api": "https://data.bioontology.org/ontologies/SNOMEDCT/classes/",
+      "access": "free_registration",
+      "format": ["JSON", "API"],
+      "provides": ["clinical terminology", "concept hierarchies", "breast anatomy codes", "procedure codes"],
+      "authority": "highest",
+      "notes": "You already have BioPortal API access from the oncology project."
+    },
+    {
+      "id": "icdo3",
+      "name": "ICD-O-3 — International Classification of Diseases for Oncology",
+      "organization": "World Health Organization",
+      "url": "https://www.who.int/standards/classifications/other-classifications/international-classification-of-diseases-for-oncology",
+      "api": null,
+      "access": "free",
+      "format": ["CSV", "PDF"],
+      "provides": ["morphology codes (histology)", "topography codes (location)", "behaviour codes", "grade"],
+      "key_breast_codes": {
+        "topography": "C50 — Breast",
+        "common_morphology": {
+          "8500/3": "Invasive ductal carcinoma, NOS",
+          "8520/3": "Invasive lobular carcinoma",
+          "8480/3": "Mucinous carcinoma",
+          "8201/3": "Cribriform carcinoma",
+          "8530/3": "Inflammatory carcinoma",
+          "8522/3": "Invasive mammary carcinoma, mixed"
+        }
+      },
+      "authority": "highest"
+    },
+    {
+      "id": "mesh_breast",
+      "name": "MeSH — Medical Subject Headings (Breast Neoplasms)",
+      "organization": "NLM / NIH",
+      "url": "https://www.ncbi.nlm.nih.gov/mesh/?term=breast+neoplasms",
+      "api": "https://id.nlm.nih.gov/mesh/lookup/term?label=breast+neoplasms&match=startswith&limit=10",
+      "access": "free",
+      "format": ["JSON", "XML", "RDF"],
+      "authority": "highest"
+    }
+  ],
+
+  "patient_resources": [
+    {
+      "id": "breastcancer_org",
+      "name": "Breastcancer.org",
+      "organization": "Breastcancer.org (nonprofit)",
+      "url": "https://www.breastcancer.org/",
+      "api": null,
+      "access": "free",
+      "provides": ["plain-language explanations", "treatment guides", "side effect management", "community forums"],
+      "authority": "high",
+      "notes": "Medically reviewed. Best plain-language source for patient-facing content."
+    },
+    {
+      "id": "cancer_net",
+      "name": "Cancer.Net (ASCO Patient Information)",
+      "organization": "American Society of Clinical Oncology",
+      "url": "https://www.cancer.net/cancer-types/breast-cancer",
+      "api": null,
+      "access": "free",
+      "provides": ["patient guides", "treatment information", "questions to ask your doctor", "side effects"],
+      "authority": "highest",
+      "notes": "Written by oncologists for patients. Highest credibility patient-facing source."
+    },
+    {
+      "id": "acs_breast",
+      "name": "American Cancer Society — Breast Cancer",
+      "organization": "American Cancer Society",
+      "url": "https://www.cancer.org/cancer/types/breast-cancer.html",
+      "api": null,
+      "access": "free",
+      "provides": ["treatment guides", "staging explanations", "statistics", "survivorship"],
+      "authority": "highest"
+    },
+    {
+      "id": "national_breast_cancer_foundation",
+      "name": "National Breast Cancer Foundation",
+      "organization": "NBCF (nonprofit)",
+      "url": "https://www.nationalbreastcancer.org/",
+      "api": null,
+      "access": "free",
+      "provides": ["early detection", "patient navigation", "resource guides"],
+      "authority": "high"
+    }
+  ],
+
+  "prognostic_tools": [
+    {
+      "id": "predict_tool",
+      "name": "PREDICT v3.0",
+      "organization": "University of Cambridge / NHS England",
+      "url": "https://breast.predict.nhs.uk/",
+      "api": "https://breast.predict.nhs.uk/api/predict/",
+      "access": "free",
+      "format": ["JSON", "API"],
+      "inputs": {
+        "required": ["age", "screen_detected", "size_mm", "grade", "nodes_positive", "er_status", "her2_status", "ki67"],
+        "optional": ["pr_status", "mode_of_detection"]
+      },
+      "outputs": ["10yr breast cancer specific survival", "benefit of each treatment modality", "survival curves"],
+      "validation": "validated on UK, Netherlands, Canadian cohorts",
+      "authority": "highest",
+      "notes": "The primary tool for the app's probabilistic timeline. Returns treatment-specific survival benefit curves."
+    },
+    {
+      "id": "oncotype_dx",
+      "name": "Oncotype DX Recurrence Score",
+      "organization": "Exact Sciences",
+      "url": "https://www.oncotypedx.com/",
+      "api": null,
+      "access": "clinical_lab_test",
+      "provides": ["21-gene recurrence score 0-100", "predicts chemo benefit in ER+HER2- early BC"],
+      "categories": {"low": "0-25", "high": "26-100"},
+      "clinical_significance": "Score determines whether chemotherapy adds benefit in ER+ early breast cancer",
+      "authority": "highest",
+      "notes": "Not an API — a lab test result that appears in patient reports. Extract score from clinical notes."
+    },
+    {
+      "id": "mammaprint",
+      "name": "MammaPrint / BluePrint",
+      "organization": "Agendia",
+      "url": "https://agendia.com/mammaprint/",
+      "api": null,
+      "access": "clinical_lab_test",
+      "provides": ["70-gene signature", "low risk / high risk classification", "guides chemo decision"],
+      "authority": "highest",
+      "notes": "Like Oncotype DX — a lab test result to extract from reports."
+    }
+  ]
+}

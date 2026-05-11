@@ -1,0 +1,6 @@
+data/genomic/
+data/imaging/
+data/literature/
+__pycache__/
+*.pyc
+.env

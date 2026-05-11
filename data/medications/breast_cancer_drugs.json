@@ -1,0 +1,266 @@
+{
+  "hormonal_therapy": [
+    {
+      "name": "Tamoxifen",
+      "brand": "Nolvadex",
+      "class": "SERM",
+      "targets": ["ER+"],
+      "mechanism": "Blocks estrogen receptors in breast tissue, preventing estrogen from fueling cancer cell growth.",
+      "plain_english": "Tells estrogen to stop feeding the cancer cells.",
+      "given_for": ["ER+", "PR+"],
+      "duration_years": 5,
+      "route": "oral",
+      "common_side_effects": ["hot flashes", "vaginal dryness", "mood changes", "fatigue"],
+      "serious_risks": ["blood clots", "uterine cancer (rare)", "cataracts"],
+      "reduces_recurrence_by": "~40-50% in ER+ tumors",
+      "seer_benefit": {"5yr_improvement": 0.12, "10yr_improvement": 0.15}
+    },
+    {
+      "name": "Anastrozole",
+      "brand": "Arimidex",
+      "class": "Aromatase Inhibitor",
+      "targets": ["ER+", "PR+"],
+      "mechanism": "Blocks aromatase enzyme that converts androgens to estrogen, dropping estrogen to near zero.",
+      "plain_english": "Shuts off the body's estrogen factory so it can't feed the cancer.",
+      "given_for": ["ER+", "PR+", "postmenopausal"],
+      "duration_years": 5,
+      "route": "oral",
+      "common_side_effects": ["joint pain", "bone loss", "hot flashes", "fatigue"],
+      "serious_risks": ["osteoporosis", "fractures"],
+      "reduces_recurrence_by": "~40-50% in postmenopausal ER+ tumors"
+    },
+    {
+      "name": "Letrozole",
+      "brand": "Femara",
+      "class": "Aromatase Inhibitor",
+      "targets": ["ER+", "PR+"],
+      "mechanism": "Blocks aromatase enzyme, reducing estrogen production by >99%.",
+      "plain_english": "Nearly eliminates estrogen so the cancer has nothing to grow on.",
+      "given_for": ["ER+", "PR+", "postmenopausal"],
+      "duration_years": 5,
+      "route": "oral",
+      "common_side_effects": ["joint pain", "hot flashes", "fatigue", "bone loss"],
+      "serious_risks": ["osteoporosis"]
+    },
+    {
+      "name": "Exemestane",
+      "brand": "Aromasin",
+      "class": "Aromatase Inhibitor",
+      "targets": ["ER+", "PR+"],
+      "mechanism": "Irreversibly inactivates aromatase, permanently blocking that enzyme.",
+      "plain_english": "Permanently disables the enzyme that makes estrogen.",
+      "given_for": ["ER+", "PR+", "postmenopausal"],
+      "duration_years": 5,
+      "route": "oral",
+      "common_side_effects": ["joint pain", "hot flashes", "fatigue", "nausea"]
+    },
+    {
+      "name": "Fulvestrant",
+      "brand": "Faslodex",
+      "class": "SERD",
+      "targets": ["ER+"],
+      "mechanism": "Degrades estrogen receptors entirely rather than just blocking them.",
+      "plain_english": "Destroys the cancer's estrogen antenna so it can't receive the signal at all.",
+      "given_for": ["ER+", "metastatic", "AI-resistant"],
+      "route": "injection monthly",
+      "common_side_effects": ["injection site pain", "hot flashes", "joint pain", "nausea"]
+    }
+  ],
+  "targeted_therapy": [
+    {
+      "name": "Trastuzumab",
+      "brand": "Herceptin",
+      "class": "HER2 monoclonal antibody",
+      "targets": ["HER2+"],
+      "mechanism": "Attaches to HER2 protein on cancer cells and flags them for immune destruction.",
+      "plain_english": "Puts a target on HER2-positive cancer cells so your immune system can find and kill them.",
+      "given_for": ["HER2+"],
+      "duration_months": 12,
+      "route": "IV infusion or injection",
+      "common_side_effects": ["fatigue", "headache", "diarrhea", "nausea", "heart effects"],
+      "serious_risks": ["cardiac toxicity (reversible)", "infusion reactions"],
+      "reduces_recurrence_by": "~50% in HER2+ tumors"
+    },
+    {
+      "name": "Pertuzumab",
+      "brand": "Perjeta",
+      "class": "HER2 monoclonal antibody",
+      "targets": ["HER2+"],
+      "mechanism": "Blocks a different part of HER2 than trastuzumab — used together they hit two sites.",
+      "plain_english": "Works with Herceptin to block HER2 from two angles at once.",
+      "given_for": ["HER2+", "neoadjuvant", "metastatic"],
+      "route": "IV infusion",
+      "common_side_effects": ["diarrhea", "nausea", "fatigue", "hair loss"]
+    },
+    {
+      "name": "T-DM1 (Ado-Trastuzumab Emtansine)",
+      "brand": "Kadcyla",
+      "class": "Antibody-drug conjugate",
+      "targets": ["HER2+"],
+      "mechanism": "Trastuzumab carrying a chemotherapy payload directly into HER2+ cells.",
+      "plain_english": "A guided missile — Herceptin finds the HER2 cancer cells and delivers chemo directly inside them.",
+      "given_for": ["HER2+", "residual disease after neoadjuvant"],
+      "route": "IV infusion",
+      "common_side_effects": ["fatigue", "nausea", "low platelets", "liver effects", "peripheral neuropathy"]
+    },
+    {
+      "name": "T-DXd (Trastuzumab Deruxtecan)",
+      "brand": "Enhertu",
+      "class": "Antibody-drug conjugate",
+      "targets": ["HER2+", "HER2-low"],
+      "mechanism": "Next-generation antibody-drug conjugate with a more potent payload and bystander effect.",
+      "plain_english": "An upgraded guided missile that also affects nearby cancer cells — works even in HER2-low tumors.",
+      "given_for": ["HER2+", "HER2-low", "metastatic"],
+      "route": "IV infusion",
+      "common_side_effects": ["nausea", "fatigue", "hair loss", "low white cells"],
+      "serious_risks": ["interstitial lung disease (serious, monitor closely)"]
+    },
+    {
+      "name": "Palbociclib",
+      "brand": "Ibrance",
+      "class": "CDK4/6 inhibitor",
+      "targets": ["ER+", "HER2-"],
+      "mechanism": "Blocks CDK4 and CDK6 proteins that tell cancer cells to divide.",
+      "plain_english": "Puts the brakes on cancer cell division — they can't multiply as fast.",
+      "given_for": ["ER+", "HER2-", "metastatic", "hormone-resistant"],
+      "route": "oral",
+      "common_side_effects": ["low white blood cells", "fatigue", "nausea", "infections"],
+      "improves_pfs_months": 10
+    },
+    {
+      "name": "Ribociclib",
+      "brand": "Kisqali",
+      "class": "CDK4/6 inhibitor",
+      "targets": ["ER+", "HER2-"],
+      "mechanism": "Same mechanism as palbociclib with demonstrated overall survival benefit.",
+      "plain_english": "Same brake on cell division as Ibrance, with proven survival improvement.",
+      "given_for": ["ER+", "HER2-", "metastatic", "pre- and postmenopausal"],
+      "route": "oral"
+    },
+    {
+      "name": "Olaparib",
+      "brand": "Lynparza",
+      "class": "PARP inhibitor",
+      "targets": ["BRCA1", "BRCA2"],
+      "mechanism": "Blocks PARP enzymes that help repair DNA — BRCA-mutated cancer cells can't survive without them.",
+      "plain_english": "Removes the cancer's backup DNA repair system. BRCA-mutated cells can't fix themselves and die.",
+      "given_for": ["BRCA1+", "BRCA2+", "HER2-", "high-risk adjuvant", "metastatic"],
+      "route": "oral",
+      "common_side_effects": ["nausea", "fatigue", "anemia", "vomiting"]
+    },
+    {
+      "name": "Abemaciclib",
+      "brand": "Verzenio",
+      "class": "CDK4/6 inhibitor",
+      "targets": ["ER+", "HER2-"],
+      "mechanism": "CDK4/6 inhibitor used in both adjuvant and metastatic settings.",
+      "plain_english": "Brakes on cancer cell division — approved for use even before cancer spreads in high-risk patients.",
+      "given_for": ["ER+", "HER2-", "high-risk adjuvant", "metastatic"],
+      "route": "oral",
+      "common_side_effects": ["diarrhea", "fatigue", "low white cells", "nausea"]
+    },
+    {
+      "name": "Sacituzumab Govitecan",
+      "brand": "Trodelvy",
+      "class": "Antibody-drug conjugate",
+      "targets": ["TNBC", "Trop-2"],
+      "mechanism": "Delivers chemo directly into Trop-2 expressing cells (high in TNBC).",
+      "plain_english": "A guided missile specifically designed for triple-negative breast cancer.",
+      "given_for": ["TNBC", "metastatic", "prior treatment"],
+      "route": "IV infusion"
+    },
+    {
+      "name": "Pembrolizumab",
+      "brand": "Keytruda",
+      "class": "PD-1 inhibitor / immunotherapy",
+      "targets": ["TNBC", "PD-L1+"],
+      "mechanism": "Removes the 'don't attack me' signal cancer uses to hide from the immune system.",
+      "plain_english": "Unmasks cancer cells so your immune system can see and attack them.",
+      "given_for": ["TNBC", "high-risk", "neoadjuvant + adjuvant"],
+      "route": "IV infusion",
+      "common_side_effects": ["fatigue", "immune reactions", "thyroid problems", "rash"],
+      "serious_risks": ["immune-mediated organ inflammation"]
+    }
+  ],
+  "chemotherapy": [
+    {
+      "name": "Doxorubicin",
+      "brand": "Adriamycin",
+      "class": "Anthracycline",
+      "mechanism": "Damages DNA in rapidly dividing cells.",
+      "plain_english": "Breaks DNA in fast-growing cells — cancer cells divide fast so they're hit hardest.",
+      "given_for": ["all subtypes", "neoadjuvant", "adjuvant"],
+      "route": "IV",
+      "common_side_effects": ["hair loss", "nausea", "fatigue", "low blood counts", "mouth sores"],
+      "serious_risks": ["heart damage (dose-dependent)", "leukemia risk (rare)"]
+    },
+    {
+      "name": "Paclitaxel",
+      "brand": "Taxol",
+      "class": "Taxane",
+      "mechanism": "Locks the cell division machinery so cancer cells can't finish dividing and die.",
+      "plain_english": "Freezes cancer cells mid-division so they can't reproduce.",
+      "given_for": ["all subtypes", "neoadjuvant", "adjuvant", "metastatic"],
+      "route": "IV",
+      "common_side_effects": ["peripheral neuropathy", "hair loss", "fatigue", "joint/muscle pain"]
+    },
+    {
+      "name": "Docetaxel",
+      "brand": "Taxotere",
+      "class": "Taxane",
+      "mechanism": "Same as paclitaxel but different formulation and dosing schedule.",
+      "plain_english": "Same mechanism as Taxol — freezes cell division.",
+      "given_for": ["all subtypes", "HER2+ with trastuzumab"],
+      "route": "IV",
+      "common_side_effects": ["hair loss", "fluid retention", "fatigue", "neuropathy", "nail changes"]
+    },
+    {
+      "name": "Cyclophosphamide",
+      "brand": "Cytoxan",
+      "class": "Alkylating agent",
+      "mechanism": "Cross-links DNA strands so cancer cells can't replicate.",
+      "plain_english": "Jams cancer cell DNA so it can't make copies of itself.",
+      "given_for": ["all subtypes", "adjuvant regimens (AC, CMF, TC)"],
+      "route": "IV or oral"
+    },
+    {
+      "name": "Capecitabine",
+      "brand": "Xeloda",
+      "class": "Antimetabolite",
+      "mechanism": "Converted to 5-FU inside cells, blocking DNA synthesis.",
+      "plain_english": "An oral chemo pill that becomes active inside tumor cells.",
+      "given_for": ["residual TNBC after neoadjuvant", "HER2+ with Kadcyla", "metastatic"],
+      "route": "oral"
+    }
+  ],
+  "common_regimens": [
+    {
+      "name": "AC-T",
+      "drugs": ["Doxorubicin", "Cyclophosphamide", "Paclitaxel"],
+      "setting": ["neoadjuvant", "adjuvant"],
+      "subtypes": ["all subtypes", "high-risk"],
+      "schedule": "AC every 3 weeks x4 → T every 3 weeks x4 (or weekly x12)"
+    },
+    {
+      "name": "TC",
+      "drugs": ["Docetaxel", "Cyclophosphamide"],
+      "setting": ["adjuvant"],
+      "subtypes": ["ER+", "HER2-", "lower risk"],
+      "schedule": "Every 3 weeks x4"
+    },
+    {
+      "name": "TCHP",
+      "drugs": ["Docetaxel", "Carboplatin", "Trastuzumab", "Pertuzumab"],
+      "setting": ["neoadjuvant"],
+      "subtypes": ["HER2+"],
+      "schedule": "Every 3 weeks x6 → complete HP x1 year"
+    },
+    {
+      "name": "Keytruda + chemo → Keytruda",
+      "drugs": ["Pembrolizumab", "Paclitaxel/Carboplatin", "AC"],
+      "setting": ["neoadjuvant + adjuvant"],
+      "subtypes": ["TNBC", "high-risk"],
+      "schedule": "Pembrolizumab + chemo neoadjuvant → surgery → pembrolizumab x9 cycles"
+    }
+  ]
+}
